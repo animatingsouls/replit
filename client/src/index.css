@@ -9,7 +9,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Colorful Theme Colors - H S L */
+  /* Dark Pastel Palette - H S L */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -47,53 +47,46 @@
   --font-sans: 'DM Sans', sans-serif;
   --font-heading: 'Quicksand', sans-serif;
 
-  --radius: 1.25rem;
-}
-
-:root {
-  /* Bright & Playful Palette */
-  --background: hsl(45 100% 98%); /* Soft Sunny Yellow */
-  --foreground: hsl(260 20% 20%); /* Deep Purple Slate */
-
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(260 20% 20%);
-
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(260 20% 20%);
-
-  --primary: hsl(340 80% 60%); /* Playful Pink/Magenta */
-  --primary-foreground: hsl(0 0% 100%);
-
-  --secondary: hsl(180 60% 92%); /* Bright Sky Blue */
-  --secondary-foreground: hsl(190 60% 30%);
-
-  --muted: hsl(45 50% 94%);
-  --muted-foreground: hsl(260 10% 45%);
-
-  --accent: hsl(40 100% 85%); /* Warm Orange/Yellow */
-  --accent-foreground: hsl(30 80% 35%);
-
-  --destructive: hsl(0 85% 60%); 
-  --destructive-foreground: hsl(0 0% 98%);
-
-  --border: hsl(45 20% 85%);
-  --input: hsl(45 20% 85%);
-  --ring: hsl(340 80% 60%);
-
-  --chart-1: hsl(340 80% 60%);
-  --chart-2: hsl(180 60% 50%);
-  --chart-3: hsl(40 100% 60%);
-  --chart-4: hsl(120 40% 50%);
-  --chart-5: hsl(260 60% 60%);
-
   --radius: 1.5rem;
 }
 
-.dark {
-  --background: hsl(260 20% 10%);
-  --foreground: hsl(45 100% 95%);
-  --card: hsl(260 20% 12%);
-  --border: hsl(260 20% 20%);
+:root {
+  /* Deep, Moody Kids Palette - "Nighttime Stories" Theme */
+  --background: hsl(230 25% 15%); /* Deep Midnight Blue */
+  --foreground: hsl(210 20% 90%); /* Soft Off-white */
+
+  --card: hsl(230 25% 18%);
+  --card-foreground: hsl(210 20% 90%);
+
+  --popover: hsl(230 25% 20%);
+  --popover-foreground: hsl(210 20% 90%);
+
+  --primary: hsl(280 40% 65%); /* Dusty Lavender */
+  --primary-foreground: hsl(230 25% 10%);
+
+  --secondary: hsl(190 30% 25%); /* Deep Teal */
+  --secondary-foreground: hsl(190 30% 85%);
+
+  --muted: hsl(230 20% 22%);
+  --muted-foreground: hsl(210 15% 65%);
+
+  --accent: hsl(40 40% 65%); /* Muted Gold/Mustard */
+  --accent-foreground: hsl(230 25% 10%);
+
+  --destructive: hsl(0 40% 50%); 
+  --destructive-foreground: hsl(0 0% 98%);
+
+  --border: hsl(230 25% 25%);
+  --input: hsl(230 25% 25%);
+  --ring: hsl(280 40% 65%);
+
+  --chart-1: hsl(280 40% 65%);
+  --chart-2: hsl(160 30% 55%); /* Dusty Sage */
+  --chart-3: hsl(20 40% 60%); /* Muted Terracotta */
+  --chart-4: hsl(200 40% 60%); /* Dusty Blue */
+  --chart-5: hsl(330 35% 65%); /* Muted Rose */
+
+  --radius: 1.5rem;
 }
 
 @layer base {
@@ -102,19 +95,21 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    background-image: radial-gradient(circle at 2px 2px, hsl(340 80% 60% / 0.05) 1px, transparent 0);
-    background-size: 40px 40px;
+    background-image: 
+      radial-gradient(circle at 10% 20%, hsl(280 40% 65% / 0.05) 0%, transparent 20%),
+      radial-gradient(circle at 80% 80%, hsl(190 30% 25% / 0.1) 0%, transparent 30%);
+    background-attachment: fixed;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold text-foreground;
+    @apply font-heading font-bold text-foreground/95;
   }
 }
 
 @layer utilities {
-  .bg-vibrant-gradient {
-    background: linear-gradient(135deg, hsl(340 80% 60%), hsl(180 60% 50%));
+  .bg-dark-pastel-gradient {
+    background: linear-gradient(135deg, hsl(280 40% 65%), hsl(190 30% 55%));
   }
-  .bg-warm-gradient {
-    background: linear-gradient(135deg, hsl(40 100% 60%), hsl(340 80% 60%));
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-md border border-white/10;
   }
 }

@@ -62,30 +62,30 @@ export default function Shop() {
             const isInCart = items.some(item => item.id === book.id);
             
             return (
-              <div key={book.id} className="group bg-card rounded-[2rem] overflow-hidden shadow-[0_8px_0_0_var(--border)] hover:translate-y-[-4px] transition-all border-2 border-border">
-                <div className="aspect-[3/4] bg-muted relative overflow-hidden">
+              <div key={book.id} className="group bg-card rounded-[2.5rem] overflow-hidden shadow-xl hover:shadow-primary/10 hover:translate-y-[-4px] transition-all border border-white/5">
+                <div className="aspect-[3/4] bg-muted/20 relative overflow-hidden">
                   <img 
                     src={book.image} 
                     alt={book.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-white/95 backdrop-blur-sm text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm border border-border">
+                    <span className="bg-background/80 backdrop-blur-md text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm border border-white/10">
                       {book.ageGroup} Yrs
                     </span>
                   </div>
                   <div className="absolute top-4 right-4">
-                    <span className={`text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm backdrop-blur-sm border border-border ${
-                      book.condition === 'Like New' ? 'bg-green-100 text-green-700' :
-                      book.condition === 'Good' ? 'bg-blue-100 text-blue-700' :
-                      'bg-orange-100 text-orange-700'
+                    <span className={`text-[10px] font-black uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sm backdrop-blur-md border border-white/10 ${
+                      book.condition === 'Like New' ? 'bg-green-500/20 text-green-300' :
+                      book.condition === 'Good' ? 'bg-blue-500/20 text-blue-300' :
+                      'bg-orange-500/20 text-orange-300'
                     }`}>
                       {book.condition}
                     </span>
                   </div>
                 </div>
                 
-                <div className="p-5">
+                <div className="p-6">
                   <h3 className="font-bold text-lg mb-1 line-clamp-1 group-hover:text-primary transition-colors">{book.title}</h3>
                   <p className="text-muted-foreground text-xs mb-4 font-medium italic">by {book.author}</p>
                   
@@ -96,7 +96,7 @@ export default function Shop() {
                       variant={isInCart ? "secondary" : "default"}
                       className={cn(
                         "rounded-full px-4 h-10 font-bold transition-all active:scale-95",
-                        !isInCart && "shadow-[0_4px_0_0_rgba(0,0,0,0.1)] hover:shadow-[0_6px_0_0_rgba(0,0,0,0.1)]"
+                        !isInCart && "shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
                       )}
                       onClick={() => handleAddToCart(book)}
                     >
