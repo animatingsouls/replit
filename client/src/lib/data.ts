@@ -9,31 +9,38 @@ export interface Book {
   author: string;
   price: number;
   condition: 'Like New' | 'Good' | 'Well Loved';
-  ageGroup: '0-3' | '3-6' | '6-10';
+  ageGroup: '0-3' | '3-6' | '6-8' | '8-12';
   image: string;
 }
 
 export const CATEGORIES = [
   {
     id: '0-3',
-    title: '0-3 Years',
+    title: '0-3 Yrs',
     description: 'Board books and textures for tiny hands',
     image: babyBooks,
     path: '/shop?age=0-3'
   },
   {
     id: '3-6',
-    title: '3-6 Years',
+    title: '3-6 Yrs',
     description: 'Picture books and early stories',
     image: pictureBooks,
     path: '/shop?age=3-6'
   },
   {
-    id: '6-10',
-    title: '6-10 Years',
+    id: '6-8',
+    title: '6-8 Yrs',
+    description: 'Early readers and fun stories',
+    image: chapterBooks,
+    path: '/shop?age=6-8'
+  },
+  {
+    id: '8-12',
+    title: '8-12 Yrs',
     description: 'Chapter books and adventures',
     image: chapterBooks,
-    path: '/shop?age=6-10'
+    path: '/shop?age=8-12'
   }
 ];
 
@@ -45,7 +52,7 @@ export const BOOKS: Book[] = [
     price: 250,
     condition: 'Good',
     ageGroup: '0-3',
-    image: babyBooks // Using category image as placeholder for now
+    image: babyBooks
   },
   {
     id: '2',
@@ -80,7 +87,7 @@ export const BOOKS: Book[] = [
     author: 'Roald Dahl',
     price: 280,
     condition: 'Good',
-    ageGroup: '6-10',
+    ageGroup: '6-8',
     image: chapterBooks
   },
   {
@@ -89,7 +96,7 @@ export const BOOKS: Book[] = [
     author: 'E.B. White',
     price: 250,
     condition: 'Well Loved',
-    ageGroup: '6-10',
+    ageGroup: '8-12',
     image: chapterBooks
   },
   {
@@ -107,7 +114,7 @@ export const BOOKS: Book[] = [
     author: 'J.K. Rowling',
     price: 450,
     condition: 'Good',
-    ageGroup: '6-10',
+    ageGroup: '8-12',
     image: chapterBooks
   }
 ];

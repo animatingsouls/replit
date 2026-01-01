@@ -221,9 +221,10 @@ export function Footer() {
           <div>
             <h4 className="font-heading font-semibold mb-4">Shop</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/shop?age=0-3"><a className="hover:text-primary">0-3 Years</a></Link></li>
-              <li><Link href="/shop?age=3-6"><a className="hover:text-primary">3-6 Years</a></Link></li>
-              <li><Link href="/shop?age=6-10"><a className="hover:text-primary">6-10 Years</a></Link></li>
+              <li><Link href="/shop?age=0-3"><a className="hover:text-primary">0-3 Yrs</a></Link></li>
+              <li><Link href="/shop?age=3-6"><a className="hover:text-primary">3-6 Yrs</a></Link></li>
+              <li><Link href="/shop?age=6-8"><a className="hover:text-primary">6-8 Yrs</a></Link></li>
+              <li><Link href="/shop?age=8-12"><a className="hover:text-primary">8-12 Yrs</a></Link></li>
               <li><Link href="/shop"><a className="hover:text-primary">All Books</a></Link></li>
             </ul>
           </div>

@@ -48,9 +48,10 @@ export default function Shop() {
               <div className="flex gap-2 overflow-x-auto pb-2">
                 {[
                   { id: 'all', label: 'All Ages' },
-                  { id: '0-3', label: '0-3 Years' },
-                  { id: '3-6', label: '3-6 Years' },
-                  { id: '6-10', label: '6-10 Years' }
+                  { id: '0-3', label: '0-3 Yrs' },
+                  { id: '3-6', label: '3-6 Yrs' },
+                  { id: '6-8', label: '6-8 Yrs' },
+                  { id: '8-12', label: '8-12 Yrs' }
                 ].map(filter => (
                   <Button
                     key={filter.id}
