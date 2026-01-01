@@ -25,25 +25,25 @@ export function Navbar() {
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <a className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <div className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
             <img src={logoImg} alt="Animating Souls Books" className="h-14 w-auto object-contain" />
-          </a>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
-              <a
+              <span
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
+                  "text-sm font-medium transition-colors hover:text-primary cursor-pointer",
                   location === link.href
                     ? "text-primary font-semibold"
                     : "text-muted-foreground"
                 )}
               >
                 {link.label}
-              </a>
+              </span>
             </Link>
           ))}
           
@@ -73,9 +73,9 @@ export function Navbar() {
                       <ShoppingCart className="h-8 w-8 text-muted-foreground" />
                     </div>
                     <p className="text-muted-foreground">Your bag is empty!</p>
-                    <Button asChild variant="link" className="mt-2 text-primary">
-                      <Link href="/shop">Go find some treasures</Link>
-                    </Button>
+                    <Link href="/shop">
+                      <span className="mt-2 text-primary cursor-pointer hover:underline block">Go find some treasures</span>
+                    </Link>
                   </div>
                 ) : (
                   items.map((item) => (
@@ -115,9 +115,11 @@ export function Navbar() {
             </SheetContent>
           </Sheet>
 
-          <Button asChild size="sm" className="rounded-full px-6 shadow-md">
-            <Link href="/shop">Shop Now</Link>
-          </Button>
+          <Link href="/shop">
+            <Button size="sm" className="rounded-full px-6 shadow-md cursor-pointer">
+              Shop Now
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Nav Button */}
@@ -179,9 +181,9 @@ export function Navbar() {
               <div className="flex flex-col gap-6 mt-8">
                 {navLinks.map((link) => (
                   <Link key={link.href} href={link.href}>
-                    <a
+                    <span
                       className={cn(
-                        "text-lg font-medium transition-colors hover:text-primary",
+                        "text-lg font-medium transition-colors hover:text-primary cursor-pointer",
                         location === link.href
                           ? "text-primary font-semibold"
                           : "text-muted-foreground"
@@ -189,12 +191,14 @@ export function Navbar() {
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {link.label}
-                    </a>
+                    </span>
                   </Link>
                 ))}
-                <Button asChild className="w-full mt-4 rounded-full shadow-lg" size="lg">
-                  <Link href="/shop" onClick={() => setIsMenuOpen(false)}>Shop Now</Link>
-                </Button>
+                <Link href="/shop">
+                  <Button className="w-full mt-4 rounded-full shadow-lg cursor-pointer" size="lg" onClick={() => setIsMenuOpen(false)}>
+                    Shop Now
+                  </Button>
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
@@ -221,20 +225,20 @@ export function Footer() {
           <div>
             <h4 className="font-heading font-semibold mb-4">Shop</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/shop?age=0-3"><a className="hover:text-primary">0-3 Yrs</a></Link></li>
-              <li><Link href="/shop?age=3-6"><a className="hover:text-primary">3-6 Yrs</a></Link></li>
-              <li><Link href="/shop?age=6-8"><a className="hover:text-primary">6-8 Yrs</a></Link></li>
-              <li><Link href="/shop?age=8-12"><a className="hover:text-primary">8-12 Yrs</a></Link></li>
-              <li><Link href="/shop"><a className="hover:text-primary">All Books</a></Link></li>
+              <li><Link href="/shop?age=0-3"><span className="hover:text-primary cursor-pointer">0-3 Yrs</span></Link></li>
+              <li><Link href="/shop?age=3-6"><span className="hover:text-primary cursor-pointer">3-6 Yrs</span></Link></li>
+              <li><Link href="/shop?age=6-8"><span className="hover:text-primary cursor-pointer">6-8 Yrs</span></Link></li>
+              <li><Link href="/shop?age=8-12"><span className="hover:text-primary cursor-pointer">8-12 Yrs</span></Link></li>
+              <li><Link href="/shop"><span className="hover:text-primary cursor-pointer">All Books</span></Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-heading font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/about"><a className="hover:text-primary">Our Story</a></Link></li>
-              <li><Link href="/how-it-works"><a className="hover:text-primary">How It Works</a></Link></li>
-              <li><Link href="/contact"><a className="hover:text-primary">Contact Us</a></Link></li>
+              <li><Link href="/about"><span className="hover:text-primary cursor-pointer">Our Story</span></Link></li>
+              <li><Link href="/how-it-works"><span className="hover:text-primary cursor-pointer">How It Works</span></Link></li>
+              <li><Link href="/contact"><span className="hover:text-primary cursor-pointer">Contact Us</span></Link></li>
             </ul>
           </div>
 
