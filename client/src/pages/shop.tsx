@@ -28,7 +28,15 @@ export default function Shop() {
   const filteredBooks = BOOKS.filter(book => {
     const ageMatch = activeFilter === "all" || book.ageGroup === activeFilter;
     const authorMatch = activeAuthor === "all" || book.author === activeAuthor;
-    const typeMatch = activeType === "all" || book.type === activeType;
+    
+    // Type and Price Filter Logic
+    let typeMatch = true;
+    if (activeType === "below-50") {
+      typeMatch = book.price < 50;
+    } else if (activeType !== "all") {
+      typeMatch = book.type === activeType;
+    }
+    
     return ageMatch && authorMatch && typeMatch;
   });
 
@@ -67,13 +75,15 @@ export default function Shop() {
 
   const typeLabels: Record<string, string> = {
     'all': 'All Types',
-    'Board Book': 'Board Book',
-    'Picture Book': 'Picture Book',
-    'Chapter Book': 'Chapter Book',
-    'Activity Book': 'Activity Book',
-    'Combo Set': 'Combo Set',
-    'Sound Book': 'Sound Book',
-    'Lift the Flap': 'Lift the Flap'
+    'Board Book': 'Boards',
+    'Paperback': 'Paperbacks',
+    'Hardcover': 'Hardcovers',
+    'Disney Marvel': 'Disney Marvel',
+    'General Knowledge': 'General Knowledge',
+    'Phonics': 'Phonics',
+    'Activity Book': 'Activity',
+    'Collection of Stories': 'Collection of Stories',
+    'below-50': 'Books below 50Rs'
   };
 
   return (
