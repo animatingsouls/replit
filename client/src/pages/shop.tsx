@@ -1,8 +1,8 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { BOOKS } from "@/lib/data";
+import { BOOKS, BOOK_TYPES } from "@/lib/data";
 import { useLocation } from "wouter";
-import { ShoppingCart, Check, User } from "lucide-react";
+import { ShoppingCart, Check, User, Book as BookIcon } from "lucide-react";
 import { useCart } from "@/lib/store";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,7 @@ export default function Shop() {
   const searchParams = new URLSearchParams(window.location.search);
   const activeFilter = searchParams.get("age") || "all";
   const activeAuthor = searchParams.get("author") || "all";
+  const activeType = searchParams.get("type") || "all";
   
   const { addItem, items } = useCart();
 
@@ -21,7 +22,8 @@ export default function Shop() {
   const filteredBooks = BOOKS.filter(book => {
     const ageMatch = activeFilter === "all" || book.ageGroup === activeFilter;
     const authorMatch = activeAuthor === "all" || book.author === activeAuthor;
-    return ageMatch && authorMatch;
+    const typeMatch = activeType === "all" || book.type === activeType;
+    return ageMatch && authorMatch && typeMatch;
   });
 
   const handleAddToCart = (book: any) => {
@@ -32,41 +34,84 @@ export default function Shop() {
     });
   };
 
+  const createFilterUrl = (params: { age?: string, author?: string, type?: string }) => {
+    const newParams = new URLSearchParams(searchParams);
+    if (params.age) {
+      if (params.age === 'all') newParams.delete('age');
+      else newParams.set('age', params.age);
+    }
+    if (params.author) {
+      if (params.author === 'all') newParams.delete('author');
+      else newParams.set('author', params.author);
+    }
+    if (params.type) {
+      if (params.type === 'all') newParams.delete('type');
+      else newParams.set('type', params.type);
+    }
+    return `/shop?${newParams.toString()}`;
+  };
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-8 mb-12">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-4">
-            <div>
+          <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+            <div className="w-full md:w-auto">
               <h1 className="text-4xl font-black mb-2">Browse Books</h1>
               <p className="text-muted-foreground font-bold">Found {filteredBooks.length} treasures</p>
             </div>
             
-            {/* Age Filter */}
-            <div className="flex flex-col gap-2 w-full md:w-auto">
-              <span className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Filter by Age</span>
-              <div className="flex gap-2 overflow-x-auto pb-2">
-                {[
-                  { id: 'all', label: 'All Ages' },
-                  { id: '0-3', label: '0-3 Yrs' },
-                  { id: '3-6', label: '3-6 Yrs' },
-                  { id: '6-8', label: '6-8 Yrs' },
-                  { id: '8-12', label: '8-12 Yrs' }
-                ].map(filter => (
-                  <Button
-                    key={filter.id}
-                    variant={activeFilter === filter.id ? "default" : "outline"}
-                    className={cn(
-                      "rounded-full whitespace-nowrap border-2",
-                      activeFilter === filter.id ? "shadow-md bg-primary border-primary" : "border-border hover:bg-muted"
-                    )}
-                    asChild
-                  >
-                    <a href={`/shop?age=${filter.id}${activeAuthor !== 'all' ? `&author=${activeAuthor}` : ''}`}>
-                      {filter.label}
-                    </a>
-                  </Button>
-                ))}
+            <div className="flex flex-col md:flex-row gap-6 w-full md:w-auto">
+              {/* Age Filter */}
+              <div className="flex flex-col gap-2">
+                <span className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Filter by Age</span>
+                <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+                  {[
+                    { id: 'all', label: 'All Ages' },
+                    { id: '0-3', label: '0-3 Yrs' },
+                    { id: '3-6', label: '3-6 Yrs' },
+                    { id: '6-8', label: '6-8 Yrs' },
+                    { id: '8-12', label: '8-12 Yrs' }
+                  ].map(filter => (
+                    <Button
+                      key={filter.id}
+                      variant={activeFilter === filter.id ? "default" : "outline"}
+                      className={cn(
+                        "rounded-full whitespace-nowrap border-2",
+                        activeFilter === filter.id ? "shadow-md bg-primary border-primary text-white" : "border-border hover:bg-muted"
+                      )}
+                      asChild
+                    >
+                      <a href={createFilterUrl({ age: filter.id })}>
+                        {filter.label}
+                      </a>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Type Filter */}
+              <div className="flex flex-col gap-2">
+                <span className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1 flex items-center gap-2">
+                  <BookIcon className="h-3 w-3" /> Filter by Type
+                </span>
+                <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+                  {BOOK_TYPES.map(type => (
+                    <Button
+                      key={type}
+                      variant={activeType === type ? "default" : "outline"}
+                      className={cn(
+                        "rounded-full whitespace-nowrap border-2 px-4 h-10 font-bold",
+                        activeType === type ? "bg-chart-2 border-chart-2 text-white shadow-md" : "border-border hover:bg-muted"
+                      )}
+                      asChild
+                    >
+                      <a href={createFilterUrl({ type })}>
+                        {type === 'all' ? 'All Types' : type}
+                      </a>
+                    </Button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -76,7 +121,7 @@ export default function Shop() {
             <span className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1 flex items-center gap-2">
               <User className="h-3 w-3" /> Filter by Author
             </span>
-            <div className="flex gap-2 overflow-x-auto pb-2">
+            <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
               {authors.map(author => (
                 <Button
                   key={author}
@@ -88,7 +133,7 @@ export default function Shop() {
                   )}
                   asChild
                 >
-                  <a href={`/shop?author=${author}${activeFilter !== 'all' ? `&age=${activeFilter}` : ''}`}>
+                  <a href={createFilterUrl({ author })}>
                     {author === 'all' ? 'All Authors' : author}
                   </a>
                 </Button>
@@ -110,9 +155,12 @@ export default function Shop() {
                       alt={book.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-secondary text-secondary-foreground text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full border-2 border-white shadow-lg">
+                    <div className="absolute top-4 left-4 flex flex-col gap-2">
+                      <span className="bg-secondary text-secondary-foreground text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full border-2 border-white shadow-lg w-fit">
                         {book.ageGroup} Yrs
+                      </span>
+                      <span className="bg-chart-2 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full border-2 border-white shadow-lg w-fit">
+                        {book.type}
                       </span>
                     </div>
                     <div className="absolute top-4 right-4">

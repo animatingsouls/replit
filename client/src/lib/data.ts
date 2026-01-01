@@ -10,8 +10,11 @@ export interface Book {
   price: number;
   condition: 'Like New' | 'Good' | 'Well Loved';
   ageGroup: '0-3' | '3-6' | '6-8' | '8-12';
+  type: 'Board Book' | 'Picture Book' | 'Chapter Book' | 'Activity Book';
   image: string;
 }
+
+export const BOOK_TYPES = ['all', 'Board Book', 'Picture Book', 'Chapter Book', 'Activity Book'];
 
 export const CATEGORIES = [
   {
@@ -52,6 +55,7 @@ export const BOOKS: Book[] = [
     price: 250,
     condition: 'Good',
     ageGroup: '0-3',
+    type: 'Board Book',
     image: babyBooks
   },
   {
@@ -61,6 +65,7 @@ export const BOOKS: Book[] = [
     price: 200,
     condition: 'Well Loved',
     ageGroup: '0-3',
+    type: 'Board Book',
     image: babyBooks
   },
   {
@@ -70,6 +75,7 @@ export const BOOKS: Book[] = [
     price: 350,
     condition: 'Like New',
     ageGroup: '3-6',
+    type: 'Picture Book',
     image: pictureBooks
   },
   {
@@ -79,6 +85,7 @@ export const BOOKS: Book[] = [
     price: 300,
     condition: 'Good',
     ageGroup: '3-6',
+    type: 'Picture Book',
     image: pictureBooks
   },
   {
@@ -88,6 +95,7 @@ export const BOOKS: Book[] = [
     price: 280,
     condition: 'Good',
     ageGroup: '6-8',
+    type: 'Chapter Book',
     image: chapterBooks
   },
   {
@@ -97,6 +105,7 @@ export const BOOKS: Book[] = [
     price: 250,
     condition: 'Well Loved',
     ageGroup: '8-12',
+    type: 'Chapter Book',
     image: chapterBooks
   },
   {
@@ -106,6 +115,7 @@ export const BOOKS: Book[] = [
     price: 320,
     condition: 'Like New',
     ageGroup: '3-6',
+    type: 'Picture Book',
     image: pictureBooks
   },
   {
@@ -115,6 +125,7 @@ export const BOOKS: Book[] = [
     price: 450,
     condition: 'Good',
     ageGroup: '8-12',
+    type: 'Chapter Book',
     image: chapterBooks
   }
 ];
