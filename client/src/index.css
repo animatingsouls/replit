@@ -9,7 +9,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Pastel Theme Colors - H S L */
+  /* Colorful Theme Colors - H S L */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -47,77 +47,53 @@
   --font-sans: 'DM Sans', sans-serif;
   --font-heading: 'Quicksand', sans-serif;
 
-  --radius: 1rem;
+  --radius: 1.25rem;
 }
 
 :root {
-  /* Soft Sage Green & Warm Beige Palette */
-  --background: hsl(35 30% 96%); /* Cream/Off-white */
-  --foreground: hsl(200 15% 30%); /* Soft Dark Slate for text */
+  /* Bright & Playful Palette */
+  --background: hsl(45 100% 98%); /* Soft Sunny Yellow */
+  --foreground: hsl(260 20% 20%); /* Deep Purple Slate */
 
   --card: hsl(0 0% 100%);
-  --card-foreground: hsl(200 15% 30%);
+  --card-foreground: hsl(260 20% 20%);
 
   --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(200 15% 30%);
+  --popover-foreground: hsl(260 20% 20%);
 
-  --primary: hsl(150 25% 45%); /* Soft Sage Green */
+  --primary: hsl(340 80% 60%); /* Playful Pink/Magenta */
   --primary-foreground: hsl(0 0% 100%);
 
-  --secondary: hsl(30 40% 90%); /* Light Peach/Beige */
-  --secondary-foreground: hsl(25 20% 40%);
+  --secondary: hsl(180 60% 92%); /* Bright Sky Blue */
+  --secondary-foreground: hsl(190 60% 30%);
 
-  --muted: hsl(35 20% 92%);
-  --muted-foreground: hsl(200 10% 50%);
+  --muted: hsl(45 50% 94%);
+  --muted-foreground: hsl(260 10% 45%);
 
-  --accent: hsl(200 30% 90%); /* Soft Pastel Blue */
-  --accent-foreground: hsl(200 40% 40%);
+  --accent: hsl(40 100% 85%); /* Warm Orange/Yellow */
+  --accent-foreground: hsl(30 80% 35%);
 
-  --destructive: hsl(0 60% 70%); /* Soft Red */
+  --destructive: hsl(0 85% 60%); 
   --destructive-foreground: hsl(0 0% 98%);
 
-  --border: hsl(35 20% 88%);
-  --input: hsl(35 20% 88%);
-  --ring: hsl(150 25% 45%);
+  --border: hsl(45 20% 85%);
+  --input: hsl(45 20% 85%);
+  --ring: hsl(340 80% 60%);
 
-  --chart-1: hsl(150 25% 45%);
-  --chart-2: hsl(30 40% 70%);
-  --chart-3: hsl(200 30% 60%);
-  --chart-4: hsl(280 20% 70%);
-  --chart-5: hsl(340 30% 70%);
+  --chart-1: hsl(340 80% 60%);
+  --chart-2: hsl(180 60% 50%);
+  --chart-3: hsl(40 100% 60%);
+  --chart-4: hsl(120 40% 50%);
+  --chart-5: hsl(260 60% 60%);
 
-  --radius: 1rem;
+  --radius: 1.5rem;
 }
 
 .dark {
-  /* Dark mode isn't a priority for this brand, but defining reasonable fallbacks */
-  --background: hsl(200 15% 15%);
-  --foreground: hsl(35 20% 90%);
-
-  --card: hsl(200 15% 18%);
-  --card-foreground: hsl(35 20% 90%);
-
-  --popover: hsl(200 15% 18%);
-  --popover-foreground: hsl(35 20% 90%);
-
-  --primary: hsl(150 25% 45%);
-  --primary-foreground: hsl(0 0% 100%);
-
-  --secondary: hsl(200 15% 25%);
-  --secondary-foreground: hsl(35 20% 90%);
-
-  --muted: hsl(200 15% 25%);
-  --muted-foreground: hsl(200 10% 60%);
-
-  --accent: hsl(200 20% 25%);
-  --accent-foreground: hsl(35 20% 90%);
-
-  --destructive: hsl(0 50% 50%);
-  --destructive-foreground: hsl(0 0% 98%);
-
-  --border: hsl(200 15% 25%);
-  --input: hsl(200 15% 25%);
-  --ring: hsl(150 25% 45%);
+  --background: hsl(260 20% 10%);
+  --foreground: hsl(45 100% 95%);
+  --card: hsl(260 20% 12%);
+  --border: hsl(260 20% 20%);
 }
 
 @layer base {
@@ -126,8 +102,19 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    background-image: radial-gradient(circle at 2px 2px, hsl(340 80% 60% / 0.05) 1px, transparent 0);
+    background-size: 40px 40px;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold text-foreground/90;
+    @apply font-heading font-bold text-foreground;
+  }
+}
+
+@layer utilities {
+  .bg-vibrant-gradient {
+    background: linear-gradient(135deg, hsl(340 80% 60%), hsl(180 60% 50%));
+  }
+  .bg-warm-gradient {
+    background: linear-gradient(135deg, hsl(40 100% 60%), hsl(340 80% 60%));
   }
 }
