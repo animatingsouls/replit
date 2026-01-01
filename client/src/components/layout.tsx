@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { useCart } from "@/lib/store";
+import logoImg from "@assets/Books_Logo_1767266123321.png";
 
 export function Navbar() {
   const [location] = useLocation();
@@ -21,12 +22,11 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <a className="flex items-center gap-2 font-heading font-bold text-xl text-primary hover:opacity-80 transition-opacity">
-            <BookOpen className="h-6 w-6" />
-            <span>Little Readers</span>
+          <a className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <img src={logoImg} alt="Animating Souls Books" className="h-14 w-auto object-contain" />
           </a>
         </Link>
 
@@ -211,10 +211,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="space-y-4">
             <h3 className="font-heading font-bold text-lg text-primary flex items-center gap-2">
-              <BookOpen className="h-5 w-5" />
-              Little Readers
+              Animating Souls Books
             </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed font-bold">
               Giving preloved children's books a second home. Building a community of conscious parents and happy little readers.
             </p>
           </div>
@@ -250,7 +249,7 @@ export function Footer() {
         </div>
         
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Little Readers India. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Animating Souls Books India. All rights reserved.</p>
         </div>
       </div>
     </footer>

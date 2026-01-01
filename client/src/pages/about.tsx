@@ -19,7 +19,7 @@ export default function About() {
           </p>
           
           <p>
-            That's how <strong>Little Readers</strong> was born.
+            That's how <strong>Animating Souls Books</strong> was born.
           </p>
 
           <h3 className="text-2xl font-bold text-foreground mt-12 mb-4">Why Preloved?</h3>

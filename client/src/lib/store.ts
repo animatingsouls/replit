@@ -39,7 +39,7 @@ export const useCart = create<CartStore>()(
         const { items, totalPrice } = get();
         if (items.length === 0) return '';
         
-        let message = `Hi! I'm interested in buying these books from Little Readers:\n\n`;
+        let message = `Hi! I'm interested in buying these books from Animating Souls Books:\n\n`;
         items.forEach((item, index) => {
           message += `${index + 1}. *${item.title}* - ₹${item.price}\n`;
         });
