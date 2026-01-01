@@ -62,7 +62,7 @@ export default function HowItWorks() {
 
         <div className="mt-20 text-center">
           <Button size="lg" className="rounded-full px-12 h-14 text-lg shadow-xl" asChild>
-             <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer">
+             <a href="https://wa.me/919916063646" target="_blank" rel="noopener noreferrer">
                Start Browsing Now
              </a>
           </Button>

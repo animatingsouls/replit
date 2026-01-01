@@ -19,13 +19,13 @@ export default function Contact() {
             </p>
 
             <div className="space-y-6">
-              <a href="https://wa.me/919999999999" className="flex items-center gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors">
+              <a href="https://wa.me/919916063646" className="flex items-center gap-4 p-4 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors">
                 <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
                   <MessageCircle className="h-6 w-6" />
                 </div>
                 <div>
                   <h3 className="font-bold">WhatsApp Us</h3>
-                  <p className="text-sm text-muted-foreground">+91 99999 99999</p>
+                  <p className="text-sm text-muted-foreground">+91 99160 63646</p>
                 </div>
               </a>
 

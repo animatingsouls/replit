@@ -103,7 +103,7 @@ export function Navbar() {
                     <span className="text-primary">₹{totalPrice()}</span>
                   </div>
                   <Button className="w-full h-14 rounded-full text-lg font-bold shadow-lg" asChild>
-                    <a href={`https://wa.me/919999999999?text=${generateWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer">
+                    <a href={`https://wa.me/919916063646?text=${generateWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer">
                       Place Order on WhatsApp
                     </a>
                   </Button>
@@ -160,7 +160,7 @@ export function Navbar() {
               {items.length > 0 && (
                 <SheetFooter className="border-t pt-4">
                   <Button className="w-full rounded-full h-12" asChild>
-                    <a href={`https://wa.me/919999999999?text=${generateWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer">
+                    <a href={`https://wa.me/919916063646?text=${generateWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer">
                       Order (₹{totalPrice()})
                     </a>
                   </Button>
