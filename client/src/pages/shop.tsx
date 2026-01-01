@@ -65,6 +65,17 @@ export default function Shop() {
     '8-12': '8-12 Yrs'
   };
 
+  const typeLabels: Record<string, string> = {
+    'all': 'All Types',
+    'Board Book': 'Board Book',
+    'Picture Book': 'Picture Book',
+    'Chapter Book': 'Chapter Book',
+    'Activity Book': 'Activity Book',
+    'Combo Set': 'Combo Set',
+    'Sound Book': 'Sound Book',
+    'Lift the Flap': 'Lift the Flap'
+  };
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
@@ -104,16 +115,16 @@ export default function Shop() {
                   <Button variant="outline" className="rounded-full border-2 border-border font-bold h-12 px-6 gap-2 min-w-[160px] justify-between">
                     <span className="flex items-center gap-2">
                       <BookIcon className="h-4 w-4 text-chart-2" />
-                      {activeType === 'all' ? 'All Types' : activeType}
+                      {typeLabels[activeType] || activeType}
                     </span>
                     <ChevronDown className="h-4 w-4 opacity-50" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="rounded-2xl p-2 border-2 border-border min-w-[180px]">
-                  {BOOK_TYPES.map(type => (
-                    <DropdownMenuItem key={type} asChild className="rounded-xl font-bold cursor-pointer">
-                      <a href={createFilterUrl({ type })} className={cn(activeType === type && "bg-chart-2 text-white hover:bg-chart-2/90 hover:text-white")}>
-                        {type === 'all' ? 'All Types' : type}
+                  {Object.entries(typeLabels).map(([id, label]) => (
+                    <DropdownMenuItem key={id} asChild className="rounded-xl font-bold cursor-pointer">
+                      <a href={createFilterUrl({ type: id })} className={cn(activeType === id && "bg-chart-2 text-white hover:bg-chart-2/90 hover:text-white")}>
+                        {label}
                       </a>
                     </DropdownMenuItem>
                   ))}
