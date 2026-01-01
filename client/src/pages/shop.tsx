@@ -2,10 +2,16 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { BOOKS, BOOK_TYPES } from "@/lib/data";
 import { useLocation } from "wouter";
-import { ShoppingCart, Check, User, Book as BookIcon } from "lucide-react";
+import { ShoppingCart, Check, User, Book as BookIcon, ChevronDown, Filter, X } from "lucide-react";
 import { useCart } from "@/lib/store";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Shop() {
   const [location] = useLocation();
@@ -51,93 +57,100 @@ export default function Shop() {
     return `/shop?${newParams.toString()}`;
   };
 
+  const ageLabels: Record<string, string> = {
+    'all': 'All Ages',
+    '0-3': '0-3 Yrs',
+    '3-6': '3-6 Yrs',
+    '6-8': '6-8 Yrs',
+    '8-12': '8-12 Yrs'
+  };
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <div className="space-y-8 mb-12">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+        <div className="flex flex-col gap-8 mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div className="w-full md:w-auto">
               <h1 className="text-4xl font-black mb-2">Browse Books</h1>
               <p className="text-muted-foreground font-bold">Found {filteredBooks.length} treasures</p>
             </div>
             
-            <div className="flex flex-col md:flex-row gap-6 w-full md:w-auto">
-              {/* Age Filter */}
-              <div className="flex flex-col gap-2">
-                <span className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1">Filter by Age</span>
-                <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-                  {[
-                    { id: 'all', label: 'All Ages' },
-                    { id: '0-3', label: '0-3 Yrs' },
-                    { id: '3-6', label: '3-6 Yrs' },
-                    { id: '6-8', label: '6-8 Yrs' },
-                    { id: '8-12', label: '8-12 Yrs' }
-                  ].map(filter => (
-                    <Button
-                      key={filter.id}
-                      variant={activeFilter === filter.id ? "default" : "outline"}
-                      className={cn(
-                        "rounded-full whitespace-nowrap border-2",
-                        activeFilter === filter.id ? "shadow-md bg-primary border-primary text-white" : "border-border hover:bg-muted"
-                      )}
-                      asChild
-                    >
-                      <a href={createFilterUrl({ age: filter.id })}>
-                        {filter.label}
+            <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
+              {/* Age Filter Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="rounded-full border-2 border-border font-bold h-12 px-6 gap-2 min-w-[140px] justify-between">
+                    <span className="flex items-center gap-2">
+                      <Filter className="h-4 w-4 text-primary" />
+                      {ageLabels[activeFilter]}
+                    </span>
+                    <ChevronDown className="h-4 w-4 opacity-50" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="rounded-2xl p-2 border-2 border-border min-w-[180px]">
+                  {Object.entries(ageLabels).map(([id, label]) => (
+                    <DropdownMenuItem key={id} asChild className="rounded-xl font-bold cursor-pointer">
+                      <a href={createFilterUrl({ age: id })} className={cn(activeFilter === id && "bg-primary text-white hover:bg-primary/90 hover:text-white")}>
+                        {label}
                       </a>
-                    </Button>
+                    </DropdownMenuItem>
                   ))}
-                </div>
-              </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-              {/* Type Filter */}
-              <div className="flex flex-col gap-2">
-                <span className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1 flex items-center gap-2">
-                  <BookIcon className="h-3 w-3" /> Filter by Type
-                </span>
-                <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+              {/* Type Filter Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="rounded-full border-2 border-border font-bold h-12 px-6 gap-2 min-w-[160px] justify-between">
+                    <span className="flex items-center gap-2">
+                      <BookIcon className="h-4 w-4 text-chart-2" />
+                      {activeType === 'all' ? 'All Types' : activeType}
+                    </span>
+                    <ChevronDown className="h-4 w-4 opacity-50" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="rounded-2xl p-2 border-2 border-border min-w-[180px]">
                   {BOOK_TYPES.map(type => (
-                    <Button
-                      key={type}
-                      variant={activeType === type ? "default" : "outline"}
-                      className={cn(
-                        "rounded-full whitespace-nowrap border-2 px-4 h-10 font-bold",
-                        activeType === type ? "bg-chart-2 border-chart-2 text-white shadow-md" : "border-border hover:bg-muted"
-                      )}
-                      asChild
-                    >
-                      <a href={createFilterUrl({ type })}>
+                    <DropdownMenuItem key={type} asChild className="rounded-xl font-bold cursor-pointer">
+                      <a href={createFilterUrl({ type })} className={cn(activeType === type && "bg-chart-2 text-white hover:bg-chart-2/90 hover:text-white")}>
                         {type === 'all' ? 'All Types' : type}
                       </a>
-                    </Button>
+                    </DropdownMenuItem>
                   ))}
-                </div>
-              </div>
-            </div>
-          </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
-          {/* Author Filter Section */}
-          <div className="flex flex-col gap-3">
-            <span className="text-xs font-black uppercase tracking-widest text-muted-foreground ml-1 flex items-center gap-2">
-              <User className="h-3 w-3" /> Filter by Author
-            </span>
-            <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-              {authors.map(author => (
-                <Button
-                  key={author}
-                  variant={activeAuthor === author ? "default" : "outline"}
-                  size="sm"
-                  className={cn(
-                    "rounded-full whitespace-nowrap border-2 px-4 h-9 font-bold",
-                    activeAuthor === author ? "bg-accent border-accent text-white shadow-md" : "border-border hover:bg-muted"
-                  )}
-                  asChild
-                >
-                  <a href={createFilterUrl({ author })}>
-                    {author === 'all' ? 'All Authors' : author}
+              {/* Author Filter Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="rounded-full border-2 border-border font-bold h-12 px-6 gap-2 min-w-[160px] justify-between">
+                    <span className="flex items-center gap-2">
+                      <User className="h-4 w-4 text-accent" />
+                      {activeAuthor === 'all' ? 'All Authors' : activeAuthor}
+                    </span>
+                    <ChevronDown className="h-4 w-4 opacity-50" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="rounded-2xl p-2 border-2 border-border max-h-[300px] overflow-y-auto min-w-[200px]">
+                  {authors.map(author => (
+                    <DropdownMenuItem key={author} asChild className="rounded-xl font-bold cursor-pointer">
+                      <a href={createFilterUrl({ author })} className={cn(activeAuthor === author && "bg-accent text-white hover:bg-accent/90 hover:text-white")}>
+                        {author === 'all' ? 'All Authors' : author}
+                      </a>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Active Filters Summary / Clear All */}
+              {(activeFilter !== 'all' || activeAuthor !== 'all' || activeType !== 'all') && (
+                <Button variant="ghost" className="rounded-full font-bold text-destructive hover:bg-destructive/10 gap-2" asChild>
+                  <a href="/shop">
+                    <X className="h-4 w-4" />
+                    Clear All
                   </a>
                 </Button>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -209,7 +222,7 @@ export default function Shop() {
           ) : (
             <div className="col-span-full py-20 text-center">
               <p className="text-2xl font-black text-muted-foreground mb-4">No books found for this combination!</p>
-              <Button asChild variant="outline" className="rounded-full border-2">
+              <Button asChild variant="outline" className="rounded-full border-2 border-border font-bold h-12 px-8 shadow-[0_4px_0_0_var(--border)]">
                 <a href="/shop">Clear all filters</a>
               </Button>
             </div>
