@@ -28,9 +28,9 @@ export default function Home() {
   };
 
   const types = [
-    { label: 'Boards', id: 'Board Book' },
-    { label: 'Paperbacks', id: 'Paperback' },
-    { label: 'Hardcovers', id: 'Hardcover' },
+    { label: 'Board', id: 'Board Book' },
+    { label: 'Paperback', id: 'Paperback' },
+    { label: 'Hardcover', id: 'Hardcover' },
     { label: 'Disney Marvel', id: 'Disney Marvel' },
     { label: 'General Knowledge', id: 'General Knowledge' },
     { label: 'Phonics', id: 'Phonics' },
