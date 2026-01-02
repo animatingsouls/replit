@@ -1,8 +1,8 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { BOOKS, BOOK_TYPES } from "@/lib/data";
+import { BOOKS } from "@/lib/data";
 import { useLocation } from "wouter";
-import { ShoppingCart, Check, User, Book as BookIcon, ChevronDown, Filter, X } from "lucide-react";
+import { ShoppingCart, Check, Book as BookIcon, ChevronDown, Filter, X } from "lucide-react";
 import { useCart } from "@/lib/store";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
@@ -17,17 +17,13 @@ export default function Shop() {
   const [location] = useLocation();
   const searchParams = new URLSearchParams(window.location.search);
   const activeFilter = searchParams.get("age") || "all";
-  const activeAuthor = searchParams.get("author") || "all";
   const activeType = searchParams.get("type") || "all";
+  const searchQuery = searchParams.get("search") || "";
   
   const { addItem, items } = useCart();
 
-  // Get unique authors
-  const authors = ["all", ...new Set(BOOKS.map(book => book.author))];
-
   const filteredBooks = BOOKS.filter(book => {
     const ageMatch = activeFilter === "all" || book.ageGroup === activeFilter;
-    const authorMatch = activeAuthor === "all" || book.author === activeAuthor;
     
     // Type and Price Filter Logic
     let typeMatch = true;
@@ -36,8 +32,13 @@ export default function Shop() {
     } else if (activeType !== "all") {
       typeMatch = book.type === activeType;
     }
+
+    // Search query logic
+    const searchMatch = !searchQuery || 
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchQuery.toLowerCase());
     
-    return ageMatch && authorMatch && typeMatch;
+    return ageMatch && typeMatch && searchMatch;
   });
 
   const handleAddToCart = (book: any) => {
@@ -48,19 +49,19 @@ export default function Shop() {
     });
   };
 
-  const createFilterUrl = (params: { age?: string, author?: string, type?: string }) => {
+  const createFilterUrl = (params: { age?: string, type?: string, search?: string }) => {
     const newParams = new URLSearchParams(searchParams);
     if (params.age) {
       if (params.age === 'all') newParams.delete('age');
       else newParams.set('age', params.age);
     }
-    if (params.author) {
-      if (params.author === 'all') newParams.delete('author');
-      else newParams.set('author', params.author);
-    }
     if (params.type) {
       if (params.type === 'all') newParams.delete('type');
       else newParams.set('type', params.type);
+    }
+    if (params.search !== undefined) {
+      if (!params.search) newParams.delete('search');
+      else newParams.set('search', params.search);
     }
     return `/shop?${newParams.toString()}`;
   };
@@ -92,7 +93,9 @@ export default function Shop() {
         <div className="flex flex-col gap-8 mb-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div className="w-full md:w-auto">
-              <h1 className="text-4xl font-black mb-2">Browse Books</h1>
+              <h1 className="text-4xl font-black mb-2">
+                {searchQuery ? `Search: "${searchQuery}"` : "Browse Books"}
+              </h1>
               <p className="text-muted-foreground font-bold">Found {filteredBooks.length} treasures</p>
             </div>
             
@@ -141,30 +144,8 @@ export default function Shop() {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {/* Author Filter Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="rounded-full border-2 border-border font-bold h-12 px-6 gap-2 min-w-[160px] justify-between">
-                    <span className="flex items-center gap-2">
-                      <User className="h-4 w-4 text-accent" />
-                      {activeAuthor === 'all' ? 'All Authors' : activeAuthor}
-                    </span>
-                    <ChevronDown className="h-4 w-4 opacity-50" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="rounded-2xl p-2 border-2 border-border max-h-[300px] overflow-y-auto min-w-[200px]">
-                  {authors.map(author => (
-                    <DropdownMenuItem key={author} asChild className="rounded-xl font-bold cursor-pointer">
-                      <a href={createFilterUrl({ author })} className={cn(activeAuthor === author && "bg-accent text-white hover:bg-accent/90 hover:text-white")}>
-                        {author === 'all' ? 'All Authors' : author}
-                      </a>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
               {/* Active Filters Summary / Clear All */}
-              {(activeFilter !== 'all' || activeAuthor !== 'all' || activeType !== 'all') && (
+              {(activeFilter !== 'all' || activeType !== 'all' || searchQuery) && (
                 <Button variant="ghost" className="rounded-full font-bold text-destructive hover:bg-destructive/10 gap-2" asChild>
                   <a href="/shop">
                     <X className="h-4 w-4" />

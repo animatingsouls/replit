@@ -10,11 +10,22 @@ export interface Book {
   price: number;
   condition: 'Like New' | 'Good' | 'Well Loved';
   ageGroup: '0-3' | '3-6' | '6-8' | '8-12';
-  type: 'Board Book' | 'Picture Book' | 'Chapter Book' | 'Activity Book';
+  type: string;
   image: string;
 }
 
-export const BOOK_TYPES = ['all', 'Board Book', 'Picture Book', 'Chapter Book', 'Activity Book'];
+export const BOOK_TYPES = [
+  'all',
+  'Board Book',
+  'Paperback',
+  'Hardcover',
+  'Disney Marvel',
+  'General Knowledge',
+  'Phonics',
+  'Activity Book',
+  'Collection of Stories',
+  'below-50'
+];
 
 export const CATEGORIES = [
   {
@@ -122,7 +133,7 @@ export const BOOKS: Book[] = [
     id: '8',
     title: 'Harry Potter and the Philosopher\'s Stone',
     author: 'J.K. Rowling',
-    price: 450,
+    price: 45,
     condition: 'Good',
     ageGroup: '8-12',
     type: 'Chapter Book',

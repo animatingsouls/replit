@@ -15,7 +15,6 @@ export function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/shop", label: "Browse Books" },
-    { href: "/how-it-works", label: "How It Works" },
     { href: "/about", label: "Our Story" },
     { href: "/contact", label: "Contact" },
   ];
@@ -26,7 +25,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/">
           <div className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
-            <img src={logoImg} alt="Animating Souls Books" className="h-14 w-auto object-contain" />
+            <img src={logoImg} alt="Animating Souls Books" className="h-20 w-auto object-contain" />
           </div>
         </Link>
 
@@ -212,7 +211,7 @@ export function Footer() {
   return (
     <footer className="bg-secondary/30 pt-16 pb-8 border-t">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           <div className="space-y-4">
             <h3 className="font-heading font-bold text-lg text-primary flex items-center gap-2">
               Animating Souls Books
@@ -220,17 +219,6 @@ export function Footer() {
             <p className="text-sm text-muted-foreground leading-relaxed font-bold">
               Giving preloved children's books a second home. Building a community of conscious parents and happy little readers.
             </p>
-          </div>
-          
-          <div>
-            <h4 className="font-heading font-semibold mb-4">Shop</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/shop?age=0-3"><span className="hover:text-primary cursor-pointer">0-3 Yrs</span></Link></li>
-              <li><Link href="/shop?age=3-6"><span className="hover:text-primary cursor-pointer">3-6 Yrs</span></Link></li>
-              <li><Link href="/shop?age=6-8"><span className="hover:text-primary cursor-pointer">6-8 Yrs</span></Link></li>
-              <li><Link href="/shop?age=8-12"><span className="hover:text-primary cursor-pointer">8-12 Yrs</span></Link></li>
-              <li><Link href="/shop"><span className="hover:text-primary cursor-pointer">All Books</span></Link></li>
-            </ul>
           </div>
 
           <div>
@@ -240,16 +228,6 @@ export function Footer() {
               <li><Link href="/how-it-works"><span className="hover:text-primary cursor-pointer">How It Works</span></Link></li>
               <li><Link href="/contact"><span className="hover:text-primary cursor-pointer">Contact Us</span></Link></li>
             </ul>
-          </div>
-
-          <div>
-            <h4 className="font-heading font-semibold mb-4">Connect</h4>
-            <p className="text-sm text-muted-foreground mb-4">
-              Join our WhatsApp community for daily book drops!
-            </p>
-            <Button variant="outline" className="w-full rounded-full border-primary text-primary hover:bg-primary hover:text-white">
-              Join WhatsApp Group
-            </Button>
           </div>
         </div>
         
