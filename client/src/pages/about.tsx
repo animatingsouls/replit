@@ -30,8 +30,7 @@ export default function About() {
           
           <h3 className="text-2xl font-bold text-foreground mt-12 mb-4">Our Promise</h3>
           <p>
-            We meticulously check every single page. No torn pages, no scribbles over text, no missing covers. 
-            If we wouldn't read it to our own kids, we won't sell it to you.
+                        Quality Books: We inspect every book for wear and tear, and we only sell books in good condition.
           </p>
         </div>
       </div>
