@@ -11,12 +11,9 @@ export default function About() {
             This journey didn’t begin as a business. It began with a child and a book.
           </p>
 
-          <div className="bg-secondary/20 p-8 rounded-[2rem] border-4 border-border">
-            <p className="text-xl text-primary font-black mb-4">Hi, I’m Archana.</p>
-            <p>
-              For over 13 years, my world revolved around graphic design and marketing communication. Deadlines, pixels, brand stories. I loved the craft. Then life quietly changed shape.
-            </p>
-          </div>
+          <p>
+            Hi, I’m Archana. For over 13 years, my world revolved around graphic design and marketing communication. Deadlines, pixels, brand stories. I loved the craft. Then life quietly changed shape.
+          </p>
           
           <p>
             When I stepped away from my IT career for maternity, I didn’t plan to start a business. I simply wanted to spend meaningful time with my son. Like many parents, I noticed something unsettling. Screens were everywhere. Attention spans were shrinking. Physical books were slowly disappearing from daily life.
@@ -42,11 +39,9 @@ export default function About() {
             Today, with over three years of experience, Animating Souls has grown many folds. Not just in numbers, but in purpose.
           </p>
 
-          <div className="p-8 rounded-[2rem] border-4 border-accent/20">
-            <p>
-              Our goal is simple. Encourage children to read. Help parents reconnect with their kids beyond screens. Make books accessible, affordable, and joyful. And remind families that imagination still matters.
-            </p>
-          </div>
+          <p>
+            Our goal is simple. Encourage children to read. Help parents reconnect with their kids beyond screens. Make books accessible, affordable, and joyful. And remind families that imagination still matters.
+          </p>
 
           <p>
             Every pre-loved book here carries a past and promises a new beginning. If it finds its way into your child’s hands, our story has done its job.

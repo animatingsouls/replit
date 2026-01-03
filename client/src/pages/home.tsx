@@ -92,19 +92,6 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              
-              {/* Floating Badge */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl border-4 border-primary animate-bounce hidden md:block">
-                <div className="flex items-center gap-3">
-                  <div className="bg-primary/10 p-2 rounded-xl">
-                    <BookIcon className="h-8 w-8 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-black text-2xl">500+</p>
-                    <p className="text-sm font-bold text-muted-foreground">Stories Rehomed</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -159,14 +146,14 @@ export default function Home() {
           >
             <CarouselContent className="-ml-4">
               {[
-                { id: 'Board Book', label: 'Board Books', color: 'bg-primary/10', borderColor: 'border-primary' },
-                { id: 'Paperback', label: 'Paperbacks', color: 'bg-chart-2/10', borderColor: 'border-chart-2' },
-                { id: 'Hardcover', label: 'Hardcovers', color: 'bg-accent/10', borderColor: 'border-accent' },
-                { id: 'Disney Marvel', label: 'Disney Marvel', color: 'bg-chart-1/10', borderColor: 'border-chart-1' },
-                { id: 'General Knowledge', label: 'GK Books', color: 'bg-secondary/10', borderColor: 'border-secondary' },
-                { id: 'Phonics', label: 'Phonics', color: 'bg-primary/20', borderColor: 'border-primary' },
-                { id: 'Activity Book', label: 'Activity', color: 'bg-chart-2/20', borderColor: 'border-chart-2' },
-                { id: 'below-50', label: 'Below 50Rs', color: 'bg-accent/20', borderColor: 'border-accent' },
+                { id: 'Board Book', label: 'Board Books', color: 'bg-[#FFEBEE]', borderColor: 'border-[#FFCDD2]', image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=200&h=150&auto=format&fit=crop' },
+                { id: 'Paperback', label: 'Paperbacks', color: 'bg-[#E3F2FD]', borderColor: 'border-[#BBDEFB]', image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&h=150&auto=format&fit=crop' },
+                { id: 'Hardcover', label: 'Hardcovers', color: 'bg-[#F1F8E9]', borderColor: 'border-[#DCEDC8]', image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=200&h=150&auto=format&fit=crop' },
+                { id: 'Disney Marvel', label: 'Disney Marvel', color: 'bg-[#FFF3E0]', borderColor: 'border-[#FFE0B2]', image: 'https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?q=80&w=200&h=150&auto=format&fit=crop' },
+                { id: 'General Knowledge', label: 'GK Books', color: 'bg-[#F3E5F5]', borderColor: 'border-[#E1BEE7]', image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=200&h=150&auto=format&fit=crop' },
+                { id: 'Phonics', label: 'Phonics', color: 'bg-[#E0F7FA]', borderColor: 'border-[#B2EBF2]', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=200&h=150&auto=format&fit=crop' },
+                { id: 'Activity Book', label: 'Activity', color: 'bg-[#FFFDE7]', borderColor: 'border-[#FFF9C4]', image: 'https://images.unsplash.com/photo-1589998059171-988d887df646?q=80&w=200&h=150&auto=format&fit=crop' },
+                { id: 'below-50', label: 'Below 50Rs', color: 'bg-[#EFEBE9]', borderColor: 'border-[#D7CCC8]', image: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=200&h=150&auto=format&fit=crop' },
               ].map((type, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-1/3 lg:basis-1/4">
                   <Link href={`/shop?type=${type.id}`}>
@@ -175,8 +162,12 @@ export default function Home() {
                       type.color,
                       type.borderColor
                     )}>
-                      <div className="w-full h-32 bg-white/50 relative overflow-hidden flex items-center justify-center">
-                        <BookIcon className="h-16 w-16 opacity-20" />
+                      <div className="w-full h-32 bg-white/50 relative overflow-hidden">
+                        <img 
+                          src={type.image}
+                          alt={type.label}
+                          className="w-full h-full object-cover mix-blend-multiply opacity-80"
+                        />
                       </div>
                       <div className="p-4 flex flex-col items-center justify-center flex-grow">
                         <h3 className="font-black text-lg leading-tight">{type.label}</h3>
@@ -190,43 +181,6 @@ export default function Home() {
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
           </Carousel>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)] group hover:translate-y-[-4px] transition-all">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
-                <ShieldCheck className="h-10 w-10" />
-              </div>
-              <h3 className="text-2xl font-black mb-4">Meticulously Checked</h3>
-              <p className="text-muted-foreground font-bold leading-relaxed">
-                We hand-check every page. No torn edges, no scribbles, just stories ready to be loved again.
-              </p>
-            </div>
-            
-            <div className="bg-white p-10 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)] group hover:translate-y-[-4px] transition-all">
-              <div className="w-16 h-16 bg-chart-2/10 rounded-2xl flex items-center justify-center mb-6 text-chart-2 group-hover:scale-110 transition-transform">
-                <Zap className="h-10 w-10" />
-              </div>
-              <h3 className="text-2xl font-black mb-4">Affordable Magic</h3>
-              <p className="text-muted-foreground font-bold leading-relaxed">
-                Build a diverse library without the hefty price tag. Quality reading should be accessible to all.
-              </p>
-            </div>
-
-            <div className="bg-white p-10 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)] group hover:translate-y-[-4px] transition-all">
-              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform">
-                <Clock className="h-10 w-10" />
-              </div>
-              <h3 className="text-2xl font-black mb-4">Eco-Friendly Reading</h3>
-              <p className="text-muted-foreground font-bold leading-relaxed">
-                Rehoming books saves trees and reduces waste. A sustainable choice for a brighter future.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 

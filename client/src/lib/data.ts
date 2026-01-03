@@ -169,7 +169,7 @@ export const TESTIMONIALS = [
   {
     id: 5,
     name: "Rekha",
-    location: "Mumbai, India",
+    location: "India",
     text: "The posting with detailed video and the prompt response makes me trust Animating souls and place constant order of books for my kid."
   },
   {
