@@ -148,7 +148,7 @@ export default function Home() {
               {[
                 { id: 'Board Book', label: 'Board Book', color: 'bg-[#FFEBEE]', borderColor: 'border-[#FFCDD2]', image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=200&h=150&auto=format&fit=crop' },
                 { id: 'Paperback', label: 'Paperback', color: 'bg-[#E3F2FD]', borderColor: 'border-[#BBDEFB]', image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&h=150&auto=format&fit=crop' },
-                { id: 'Hardcover', label: 'Hardcovers', color: 'bg-[#F1F8E9]', borderColor: 'border-[#DCEDC8]', image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=200&h=150&auto=format&fit=crop' },
+                { id: 'Hardcover', label: 'Hardcover', color: 'bg-[#F1F8E9]', borderColor: 'border-[#DCEDC8]', image: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=200&h=150&auto=format&fit=crop' },
                 { id: 'Disney Marvel', label: 'Disney Marvel', color: 'bg-[#FFF3E0]', borderColor: 'border-[#FFE0B2]', image: 'https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?q=80&w=200&h=150&auto=format&fit=crop' },
                 { id: 'General Knowledge', label: 'GK Books', color: 'bg-[#F3E5F5]', borderColor: 'border-[#E1BEE7]', image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=200&h=150&auto=format&fit=crop' },
                 { id: 'Phonics', label: 'Phonics', color: 'bg-[#E0F7FA]', borderColor: 'border-[#B2EBF2]', image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=200&h=150&auto=format&fit=crop' },

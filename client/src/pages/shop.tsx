@@ -347,7 +347,7 @@ export default function Shop() {
     all: "All Types",
     "Board Book": "Board Book",
     Paperback: "Paperback",
-    Hardcover: "Hardcovers",
+    Hardcover: "Hardcover",
     "Disney Marvel": "Disney Marvel",
     "General Knowledge": "General Knowledge",
     Phonics: "Phonics",
@@ -411,7 +411,7 @@ export default function Shop() {
                 {searchQuery ? `Search: "${searchQuery}"` : "Shop Now"}
               </h1>
               <p className="text-muted-foreground font-bold">
-                Found {filteredBooks.length} treasures • <span className="text-primary italic">*Shipping charges are extra</span>
+                Found {filteredBooks.length} treasures
               </p>
             </div>
 
