@@ -14,7 +14,6 @@ export function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/shop", label: "Browse Books" },
     { href: "/about", label: "Our Story" },
     { href: "/contact", label: "Contact" },
   ];
@@ -25,7 +24,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/">
           <div className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
-            <img src={logoImg} alt="Animating Souls Books" className="h-20 w-auto object-contain" />
+            <img src={logoImg} alt="Animating Souls Books" className="h-28 w-auto object-contain" />
           </div>
         </Link>
 

@@ -1,37 +1,61 @@
 import { Layout } from "@/components/layout";
-import { Button } from "@/components/ui/button";
 
 export default function About() {
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-16 max-w-3xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center">Our Story</h1>
+      <div className="container mx-auto px-4 py-16 max-w-4xl">
+        <h1 className="text-4xl md:text-5xl font-black mb-12 text-center text-primary">Our Story</h1>
         
-        <div className="prose prose-lg mx-auto text-muted-foreground space-y-6">
-          <p className="lead text-xl text-foreground font-medium">
-            It started with a simple observation: children outgrow books faster than they wear out clothes.
-          </p>
-          
-          <p>
-            As parents, we watched our bookshelves overflow with titles our kids had loved but moved on from. 
-            We knew these stories still had magic left in them. They deserved to be read again, to spark 
-            imagination in another child's mind.
-          </p>
-          
-          <p>
-            That's how <strong>Animating Souls Books</strong> was born.
+        <div className="prose prose-lg mx-auto text-muted-foreground space-y-8 font-bold leading-relaxed">
+          <p className="text-2xl text-foreground font-black text-center mb-12">
+            This journey didn’t begin as a business. It began with a child and a book.
           </p>
 
-          <h3 className="text-2xl font-bold text-foreground mt-12 mb-4">Why Preloved?</h3>
-          <p>
-            Choosing preloved isn't just about saving money (though that helps!). It's a conscious choice 
-            to reduce waste. Every book re-homed is one less book printed, and one less book in a landfill.
-          </p>
+          <div className="bg-secondary/20 p-8 rounded-[2rem] border-4 border-border">
+            <p className="text-xl text-primary font-black mb-4">Hi, I’m Archana.</p>
+            <p>
+              For over 13 years, my world revolved around graphic design and marketing communication. Deadlines, pixels, brand stories. I loved the craft. Then life quietly changed shape.
+            </p>
+          </div>
           
-          <h3 className="text-2xl font-bold text-foreground mt-12 mb-4">Our Promise</h3>
           <p>
-            We meticulously check every single page. No torn pages, no scribbles over text, no missing covers. 
-            If we wouldn't read it to our own kids, we won't sell it to you.
+            When I stepped away from my IT career for maternity, I didn’t plan to start a business. I simply wanted to spend meaningful time with my son. Like many parents, I noticed something unsettling. Screens were everywhere. Attention spans were shrinking. Physical books were slowly disappearing from daily life.
+          </p>
+
+          <p>
+            What started as a personal effort to introduce my son to the joy of reading became something bigger than I ever expected.
+          </p>
+
+          <p>
+            I began collecting and sharing pre-loved children’s books. Stories that had already been loved once, now ready to spark imagination again. Page by page, something beautiful unfolded. Parents began reaching out. Children started asking for books. Reading became less of a task and more of a shared ritual.
+          </p>
+
+          <p className="text-2xl text-primary font-black italic text-center py-8">
+            That’s how Animating Souls was born.
+          </p>
+
+          <p>
+            The name has a story of its own. As an animator at heart, I’ve always believed stories have the power to bring ideas, emotions, and worlds to life. “AS” also stands for Archana & Swaminathan, and together with my husband, this journey became a family-led mission rather than just a business.
+          </p>
+
+          <p>
+            Today, with over three years of experience, Animating Souls has grown many folds. Not just in numbers, but in purpose.
+          </p>
+
+          <div className="bg-accent/10 p-8 rounded-[2rem] border-4 border-accent/20">
+            <p className="text-xl text-accent font-black mb-4">Our Goal</p>
+            <p>
+              Our goal is simple. Encourage children to read. Help parents reconnect with their kids beyond screens. Make books accessible, affordable, and joyful. And remind families that imagination still matters.
+            </p>
+          </div>
+
+          <p>
+            Every pre-loved book here carries a past and promises a new beginning. If it finds its way into your child’s hands, our story has done its job.
+          </p>
+
+          <p className="text-3xl text-primary font-black text-center pt-12">
+            Welcome to Animating Souls. <br/>
+            <span className="text-xl text-muted-foreground">Where stories live on.</span>
           </p>
         </div>
       </div>
