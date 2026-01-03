@@ -47,14 +47,14 @@ export function Navbar() {
           
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="relative">
-                <ShoppingCart className="h-5 w-5" />
+              <div className="relative group cursor-pointer p-2 rounded-full hover:bg-secondary transition-colors">
+                <ShoppingCart className="h-5 w-5 transition-transform group-hover:scale-110" />
                 {totalItems() > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-in zoom-in">
+                  <span className="absolute top-0 right-0 bg-primary text-primary-foreground text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-in zoom-in">
                     {totalItems()}
                   </span>
                 )}
-              </Button>
+              </div>
             </SheetTrigger>
             <SheetContent className="w-full sm:max-w-md flex flex-col">
               <SheetHeader>
@@ -100,6 +100,9 @@ export function Navbar() {
                     <span>Total Order</span>
                     <span className="text-primary">₹{totalPrice()}</span>
                   </div>
+                  <p className="text-xs text-center text-primary font-bold italic">
+                    *Shipping charges are extra
+                  </p>
                   <Button className="w-full h-14 rounded-full text-lg font-bold shadow-lg" asChild>
                     <a href={`https://wa.me/919916063646?text=${generateWhatsAppMessage()}`} target="_blank" rel="noopener noreferrer">
                       Place Order on WhatsApp

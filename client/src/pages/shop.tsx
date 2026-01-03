@@ -345,15 +345,15 @@ export default function Shop() {
 
   const typeLabels: Record<string, string> = {
     all: "All Types",
-    "Board Book": "Boards",
-    Paperback: "Paperbacks",
+    "Board Book": "Board Book",
+    Paperback: "Paperback",
     Hardcover: "Hardcovers",
     "Disney Marvel": "Disney Marvel",
     "General Knowledge": "General Knowledge",
     Phonics: "Phonics",
     "Activity Book": "Activity",
     "Collection of Stories": "Collection of Stories",
-    "below-50": "Books below 50Rs",
+    "below-50": "Books below 50 Rs",
   };
 
   if (isLoading) {
@@ -411,7 +411,7 @@ export default function Shop() {
                 {searchQuery ? `Search: "${searchQuery}"` : "Shop Now"}
               </h1>
               <p className="text-muted-foreground font-bold">
-                Found {filteredBooks.length} treasures
+                Found {filteredBooks.length} treasures • <span className="text-primary italic">*Shipping charges are extra</span>
               </p>
             </div>
 
