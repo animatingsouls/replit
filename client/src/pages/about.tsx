@@ -35,15 +35,14 @@ export default function About() {
           </p>
 
           <p>
-            The name has a story of its own. As an animator at heart, I’ve always believed stories have the power to bring ideas, emotions, and worlds to life. “AS” also stands for Archana & Swaminathan, and together with my husband, this journey became a family-led mission rather than just a business.
+            The name has a story of its own. As an animator at heart, I’ve always believed stories have the power to bring ideas, emotions, and worlds to life. “AS” also stands for <strong>Archana & Swaminathan</strong>, and together with my husband, this journey became a family-led mission rather than just a business.
           </p>
 
           <p>
             Today, with over three years of experience, Animating Souls has grown many folds. Not just in numbers, but in purpose.
           </p>
 
-          <div className="bg-accent/10 p-8 rounded-[2rem] border-4 border-accent/20">
-            <p className="text-xl text-accent font-black mb-4">Our Goal</p>
+          <div className="p-8 rounded-[2rem] border-4 border-accent/20">
             <p>
               Our goal is simple. Encourage children to read. Help parents reconnect with their kids beyond screens. Make books accessible, affordable, and joyful. And remind families that imagination still matters.
             </p>

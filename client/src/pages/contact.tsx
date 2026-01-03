@@ -23,50 +23,38 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               className="space-y-8"
             >
-              <div className="bg-white p-8 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)]">
-                <h3 className="text-2xl font-black mb-8">Contact Information</h3>
+              <div className="bg-white p-6 rounded-[2.5rem] border-4 border-border shadow-[0_8px_0_0_var(--border)] max-w-sm mx-auto md:mx-0">
+                <h3 className="text-xl font-black mb-6">Contact Information</h3>
                 
-                <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
-                      <Mail className="h-6 w-6" />
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary shrink-0">
+                      <Mail className="h-5 w-5" />
                     </div>
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">Email Us</p>
-                      <p className="font-bold text-lg">animatingsoulsbooks@gmail.com</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-chart-2/10 rounded-2xl flex items-center justify-center text-chart-2">
-                      <Phone className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">Call / WhatsApp</p>
-                      <p className="font-bold text-lg">+91 99160 63646</p>
+                    <div className="overflow-hidden">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground leading-none mb-1">Email</p>
+                      <p className="font-bold text-sm truncate">animatingsoulsbooks@gmail.com</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
-                      <MapPin className="h-6 w-6" />
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-chart-2/10 rounded-xl flex items-center justify-center text-chart-2 shrink-0">
+                      <Phone className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xs font-black uppercase tracking-widest text-muted-foreground">Location</p>
-                      <p className="font-bold text-lg">Bangalore, India</p>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground leading-none mb-1">WhatsApp</p>
+                      <p className="font-bold text-sm">+91 99160 63646</p>
                     </div>
                   </div>
-                </div>
 
-                <div className="mt-12 pt-8 border-t space-y-4">
-                  <p className="font-black">Follow our story</p>
-                  <div className="flex gap-4">
-                    <Button variant="outline" size="icon" className="rounded-2xl border-2 h-12 w-12 hover:bg-primary hover:text-white transition-all">
-                      <Instagram className="h-6 w-6" />
-                    </Button>
-                    <Button variant="outline" size="icon" className="rounded-2xl border-2 h-12 w-12 hover:bg-chart-2 hover:text-white transition-all">
-                      <MessageCircle className="h-6 w-6" />
-                    </Button>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center text-accent shrink-0">
+                      <MapPin className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground leading-none mb-1">Location</p>
+                      <p className="font-bold text-sm">Bangalore, India</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -76,23 +64,33 @@ export default function Contact() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <form className="bg-white p-8 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)] space-y-6">
+              <form 
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const name = formData.get('name');
+                  const message = formData.get('message');
+                  const whatsappUrl = `https://wa.me/919916063646?text=${encodeURIComponent(`Hi, I'm ${name}. ${message}`)}`;
+                  window.open(whatsappUrl, '_blank');
+                }}
+                className="bg-white p-8 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)] space-y-6"
+              >
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest ml-1">Your Name</label>
-                  <Input placeholder="Enter your name" className="h-14 rounded-2xl border-2 font-bold" />
+                  <Input name="name" placeholder="Enter your name" className="h-14 rounded-2xl border-2 font-bold" required />
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest ml-1">Email Address</label>
-                  <Input type="email" placeholder="Enter your email" className="h-14 rounded-2xl border-2 font-bold" />
+                  <Input type="email" name="email" placeholder="Enter your email" className="h-14 rounded-2xl border-2 font-bold" required />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-sm font-black uppercase tracking-widest ml-1">Message</label>
-                  <Textarea placeholder="How can we help you?" className="min-h-[150px] rounded-2xl border-2 font-bold p-4" />
+                  <Textarea name="message" placeholder="How can we help you?" className="min-h-[150px] rounded-2xl border-2 font-bold p-4" required />
                 </div>
 
-                <Button className="w-full h-14 rounded-full text-lg font-black shadow-[0_6px_0_0_rgba(0,0,0,0.1)] active:translate-y-1 active:shadow-none transition-all">
+                <Button type="submit" className="w-full h-14 rounded-full text-lg font-black shadow-[0_6px_0_0_rgba(0,0,0,0.1)] active:translate-y-1 active:shadow-none transition-all">
                   Send Message
                 </Button>
               </form>

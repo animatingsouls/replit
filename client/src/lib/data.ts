@@ -144,21 +144,51 @@ export const BOOKS: Book[] = [
 export const TESTIMONIALS = [
   {
     id: 1,
-    name: "Priya S.",
-    location: "Mumbai",
-    text: "The books were in such good condition! My daughter loves the surprise of opening the package."
+    name: "Neethu",
+    location: "Kerala",
+    text: "The team has a good collection of books. While they are second hand books, the quality and condition is quite good. If there is anything amiss, they are upfront about it. I always believe in gifting books to kids in my family and expect them to pass it on when they outgrow it. This platform is a brilliant way to keep that alive and of course, at a fraction of the original cost of books. I have got whole sets of books, high quality children stories with puzzles, etc. I will continue exploring and buying from them. Thank you and good luck!"
   },
   {
     id: 2,
-    name: "Rahul M.",
-    location: "Bangalore",
-    text: "Finally an affordable way to keep up with my son's reading appetite. Highly recommend!"
+    name: "Pratima",
+    location: "Mumbai",
+    text: "My son has fallen in love with reading n books all thanks to lovely age appropriate guidance n preloved books offered by Archana Swaminathan (brainchild behind ‘Animating Souls’ Bangalore based but ships all across India n overseas too). My son is 5 n have read together over 100 books (for his age) which was not possible without the excellent guidance we got from Archana. Hope this helps u as much as it did help us."
   },
   {
     id: 3,
-    name: "Anita K.",
-    location: "Delhi",
-    text: "Love the sustainability aspect. It feels good to give these books a second home."
+    name: "Maitreyi",
+    location: "Bangalore",
+    text: "Pristine books. Archana very punctual in posting, disciplined and quite hardworking. She will guide you through what genre your children wants and is interested. Thank you for a smooth and beautiful service."
+  },
+  {
+    id: 4,
+    name: "Urvashi",
+    location: "",
+    text: "Thank you for all the hardwork you do to get the best books for all our kids 🙏🏻♥️ Thank you for sorting out to them.. It becomes easier to select the books as they are age appropriate… Archana you are the best ❤️"
+  },
+  {
+    id: 5,
+    name: "Rekha",
+    location: "Mumbai, India",
+    text: "The posting with detailed video and the prompt response makes me trust Animating souls and place constant order of books for my kid."
+  },
+  {
+    id: 6,
+    name: "Debasmita Ghosh",
+    location: "Bangalore",
+    text: "Animating Souls opens the avenue to know about various different books, forms the habit of acquiring never ending knowledge, builds interest. Preloved books is a great choice to explore wide range of books at an affordable price. Archana has helped multiple times to choose the age appropriate right book."
+  },
+  {
+    id: 7,
+    name: "Bargavi",
+    location: "Chennai",
+    text: "Very very easy and cool shopping experience. All the books I ordered are in perfect condition. I have purchased multiple times and process if payment and delivery is very fast and accurate. My best wishes for your success and great future!!!! Archana is so kind and supportive!!!"
+  },
+  {
+    id: 8,
+    name: "Shwetha Shetty",
+    location: "Bangalore",
+    text: "I’ve been purchasing books from Archana for a while now, and every interaction has been a delight! Their collection is thoughtfully curated, offering a treasure trove of classics, rare finds, and contemporary gems at unbeatable prices. Each book I’ve received has been in excellent condition, and their prompt and friendly service makes the entire experience seamless."
   }
 ];
 

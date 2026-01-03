@@ -1,13 +1,18 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Star, Search } from "lucide-react";
-import { Link, useLocation } from "wouter";
-import { motion } from "framer-motion";
-import { heroImg, CATEGORIES, TESTIMONIALS, BOOKS } from "@/lib/data";
-import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { 
+  Search, 
+  ArrowRight, 
+  Star, 
+  Book as BookIcon,
+  Clock,
+  ShieldCheck,
+  Zap
+} from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { CATEGORIES, TESTIMONIALS, heroImg } from "@/lib/data";
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +20,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export default function Home() {
   const [, setLocation] = useLocation();
@@ -26,18 +33,6 @@ export default function Home() {
       setLocation(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
-
-  const types = [
-    { label: 'Board', id: 'Board Book' },
-    { label: 'Paperback', id: 'Paperback' },
-    { label: 'Hardcover', id: 'Hardcover' },
-    { label: 'Disney Marvel', id: 'Disney Marvel' },
-    { label: 'General Knowledge', id: 'General Knowledge' },
-    { label: 'Phonics', id: 'Phonics' },
-    { label: 'Activity', id: 'Activity Book' },
-    { label: 'Collections of Stories', id: 'Collection of Stories' },
-    { label: 'Books below 50 INR', id: 'below-50' }
-  ];
 
   return (
     <Layout>
@@ -90,23 +85,37 @@ export default function Home() {
 
             <div className="relative">
               <div className="absolute inset-0 bg-accent rounded-[3rem] transform rotate-6 scale-105 -z-10" />
-              <div className="absolute inset-0 bg-secondary rounded-[3rem] transform -rotate-3 scale-105 -z-20" />
-              <img
-                src={heroImg}
-                alt="Happy child reading"
-                className="rounded-[3rem] shadow-2xl w-full object-cover aspect-[4/3] transform -rotate-1 hover:rotate-0 transition-transform duration-500 border-8 border-white"
-              />
+              <div className="relative rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl aspect-[4/3]">
+                <img
+                  src={heroImg}
+                  alt="Happy children reading books"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl border-4 border-primary animate-bounce hidden md:block">
+                <div className="flex items-center gap-3">
+                  <div className="bg-primary/10 p-2 rounded-xl">
+                    <BookIcon className="h-8 w-8 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-black text-2xl">500+</p>
+                    <p className="text-sm font-bold text-muted-foreground">Stories Rehomed</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">Shop by Age</h2>
-            <p className="text-muted-foreground font-bold text-lg">
+      {/* Shop by Age Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black mb-4">Shop by Age</h2>
+            <p className="text-muted-foreground text-lg font-bold">
               Find the perfect book for every stage
             </p>
           </div>
@@ -124,7 +133,7 @@ export default function Home() {
                   </div>
                   <div className="mt-6 text-center px-4">
                     <h3 className="text-xl font-black">{cat.title}</h3>
-                    <p className="text-muted-foreground text-sm font-bold leading-tight">Board books and Paperbacks for tiny hands</p>
+                    <p className="text-muted-foreground text-sm font-bold leading-tight">{cat.description}</p>
                   </div>
                 </div>
               </Link>
@@ -149,20 +158,29 @@ export default function Home() {
             className="w-full max-w-5xl mx-auto"
           >
             <CarouselContent className="-ml-4">
-              {types.map((type, index) => (
+              {[
+                { id: 'Board Book', label: 'Board Books', color: 'bg-primary/10', borderColor: 'border-primary' },
+                { id: 'Paperback', label: 'Paperbacks', color: 'bg-chart-2/10', borderColor: 'border-chart-2' },
+                { id: 'Hardcover', label: 'Hardcovers', color: 'bg-accent/10', borderColor: 'border-accent' },
+                { id: 'Disney Marvel', label: 'Disney Marvel', color: 'bg-chart-1/10', borderColor: 'border-chart-1' },
+                { id: 'General Knowledge', label: 'GK Books', color: 'bg-secondary/10', borderColor: 'border-secondary' },
+                { id: 'Phonics', label: 'Phonics', color: 'bg-primary/20', borderColor: 'border-primary' },
+                { id: 'Activity Book', label: 'Activity', color: 'bg-chart-2/20', borderColor: 'border-chart-2' },
+                { id: 'below-50', label: 'Below 50Rs', color: 'bg-accent/20', borderColor: 'border-accent' },
+              ].map((type, index) => (
                 <CarouselItem key={index} className="pl-4 md:basis-1/3 lg:basis-1/4">
                   <Link href={`/shop?type=${type.id}`}>
-                    <div className="bg-white rounded-[2rem] border-4 border-border shadow-[0_8px_0_0_var(--border)] hover:translate-y-[-4px] transition-all text-center h-full flex flex-col items-center cursor-pointer min-h-[220px] overflow-hidden">
-                      <div className="w-full h-32 bg-muted relative">
-                        <img 
-                          src={`https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=200&h=150&auto=format&fit=crop`}
-                          alt={type.label}
-                          className="w-full h-full object-cover"
-                        />
+                    <div className={cn(
+                      "rounded-[2rem] border-4 shadow-[0_8px_0_0_rgba(0,0,0,0.1)] hover:translate-y-[-4px] transition-all text-center h-full flex flex-col items-center cursor-pointer min-h-[220px] overflow-hidden",
+                      type.color,
+                      type.borderColor
+                    )}>
+                      <div className="w-full h-32 bg-white/50 relative overflow-hidden flex items-center justify-center">
+                        <BookIcon className="h-16 w-16 opacity-20" />
                       </div>
                       <div className="p-4 flex flex-col items-center justify-center flex-grow">
                         <h3 className="font-black text-lg leading-tight">{type.label}</h3>
-                        <ArrowRight className="mt-2 h-5 w-5 text-primary" />
+                        <ArrowRight className="mt-2 h-5 w-5 opacity-60" />
                       </div>
                     </div>
                   </Link>
@@ -172,6 +190,43 @@ export default function Home() {
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
           </Carousel>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-10 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)] group hover:translate-y-[-4px] transition-all">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+                <ShieldCheck className="h-10 w-10" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">Meticulously Checked</h3>
+              <p className="text-muted-foreground font-bold leading-relaxed">
+                We hand-check every page. No torn edges, no scribbles, just stories ready to be loved again.
+              </p>
+            </div>
+            
+            <div className="bg-white p-10 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)] group hover:translate-y-[-4px] transition-all">
+              <div className="w-16 h-16 bg-chart-2/10 rounded-2xl flex items-center justify-center mb-6 text-chart-2 group-hover:scale-110 transition-transform">
+                <Zap className="h-10 w-10" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">Affordable Magic</h3>
+              <p className="text-muted-foreground font-bold leading-relaxed">
+                Build a diverse library without the hefty price tag. Quality reading should be accessible to all.
+              </p>
+            </div>
+
+            <div className="bg-white p-10 rounded-[3rem] border-4 border-border shadow-[0_12px_0_0_var(--border)] group hover:translate-y-[-4px] transition-all">
+              <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-6 text-accent group-hover:scale-110 transition-transform">
+                <Clock className="h-10 w-10" />
+              </div>
+              <h3 className="text-2xl font-black mb-4">Eco-Friendly Reading</h3>
+              <p className="text-muted-foreground font-bold leading-relaxed">
+                Rehoming books saves trees and reduces waste. A sustainable choice for a brighter future.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

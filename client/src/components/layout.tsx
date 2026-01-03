@@ -20,11 +20,11 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+      <div className="container mx-auto px-4 h-24 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
           <div className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
-            <img src={logoImg} alt="Animating Souls Books" className="h-28 w-auto object-contain" />
+            <img src={logoImg} alt="Animating Souls Books" className="h-20 w-auto object-contain" />
           </div>
         </Link>
 
