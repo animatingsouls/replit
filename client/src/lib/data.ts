@@ -3,6 +3,8 @@ import babyBooks from '@assets/stock_images/baby_board_books_sta_e62b3f80.jpg';
 import pictureBooks from '@assets/stock_images/colorful_children_pi_7154bf3f.jpg';
 import chapterBooks from '@assets/stock_images/children_chapter_boo_7742ae68.jpg';
 
+import age812Img from "@assets/8-12_1767475653822.jpeg";
+
 export interface Book {
   id: string;
   title: string;
@@ -53,7 +55,7 @@ export const CATEGORIES = [
     id: '8-12',
     title: '8-12 Yrs',
     description: 'Chapter books and adventures',
-    image: chapterBooks,
+    image: age812Img,
     path: '/shop?age=8-12'
   }
 ];
