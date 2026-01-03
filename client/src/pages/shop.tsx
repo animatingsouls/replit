@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useLocation } from "wouter";
 import {
   ShoppingCart,
@@ -8,12 +9,14 @@ import {
   ChevronDown,
   Filter,
   X,
+  Search,
 } from "lucide-react";
 import { useCart } from "@/lib/store";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Book } from "@/lib/data";
+import { useState, useEffect } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -230,11 +233,19 @@ async function fetchBooksFromCSV(): Promise<Book[]> {
 }
 
 export default function Shop() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const searchParams = new URLSearchParams(window.location.search);
   const activeFilter = searchParams.get("age") || "all";
   const activeType = searchParams.get("type") || "all";
   const searchQuery = searchParams.get("search") || "";
+
+  // Local state for search input
+  const [searchInput, setSearchInput] = useState(searchQuery);
+
+  // Sync search input with URL parameter
+  useEffect(() => {
+    setSearchInput(searchQuery);
+  }, [searchQuery]);
 
   const { addItem, items } = useCart();
 
@@ -314,6 +325,14 @@ export default function Shop() {
       else newParams.set("search", params.search);
     }
     return `/shop?${newParams.toString()}`;
+  };
+
+  // Handle search input change
+  const handleSearchChange = (value: string) => {
+    setSearchInput(value);
+    // Update URL immediately
+    const newUrl = createFilterUrl({ search: value });
+    setLocation(newUrl);
   };
 
   const ageLabels: Record<string, string> = {
@@ -397,6 +416,20 @@ export default function Shop() {
             </div>
 
             <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
+              {/* Search Input */}
+              <div className="relative w-full md:w-auto min-w-[200px]">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Search books..."
+                  value={searchInput}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleSearchChange(e.target.value)
+                  }
+                  className="rounded-full border-2 border-border font-bold h-12 pl-10 pr-4 w-full md:w-auto"
+                />
+              </div>
+
               {/* Age Filter Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
