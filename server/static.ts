@@ -10,16 +10,39 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // Serve static files with fallthrough enabled (default) so non-existent files call next()
+  app.use(
+    express.static(distPath, {
+      fallthrough: true, // Continue to next middleware if file not found
+    }),
+  );
 
-  // fall through to index.html if the file doesn't exist
-  // This catch-all route handles SPA routing - all non-API routes should serve index.html
-  app.all("*", (req, res, next) => {
-    // Skip API routes
+  // Catch-all route for SPA routing - must be after static middleware
+  // This handles all routes that don't match static files or API routes
+  app.use((req, res, next) => {
+    // Skip API routes - let them fall through to error handler
     if (req.path.startsWith("/api")) {
       return next();
     }
+
+    // Skip if response was already sent (e.g., by static middleware serving a file)
+    if (res.headersSent) {
+      return next();
+    }
+
+    // Skip if this is a request for a static file (has extension)
+    // This prevents serving index.html for actual file requests
+    const hasExtension = /\.[^/]+$/.test(req.path);
+    if (hasExtension) {
+      return next();
+    }
+
     // Serve index.html for all other routes to enable client-side routing
-    res.sendFile(path.resolve(distPath, "index.html"));
+    const indexPath = path.resolve(distPath, "index.html");
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath);
+    } else {
+      next();
+    }
   });
 }
