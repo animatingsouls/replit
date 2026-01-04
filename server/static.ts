@@ -13,7 +13,13 @@ export function serveStatic(app: Express) {
   app.use(express.static(distPath));
 
   // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
+  // This catch-all route handles SPA routing - all non-API routes should serve index.html
+  app.all("*", (req, res, next) => {
+    // Skip API routes
+    if (req.path.startsWith("/api")) {
+      return next();
+    }
+    // Serve index.html for all other routes to enable client-side routing
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
